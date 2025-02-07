@@ -50,7 +50,8 @@ Total: 39.33
 If you want to add more produdcts and test them, you can do it by modifying test.js sample test.
 
 🔹 Automated Testing
-Run test:
+
+Run:
 ```bash
 npm test
 ```
