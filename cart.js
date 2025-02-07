@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+
 const TAX = 0.125;
 const PRICE_API_URL = "http://localhost:3001/products";
 
@@ -15,7 +16,7 @@ class Cart {
 
         try {
             // Fetch all products and filter by product ID
-            const response = await axios.get(`${PRICE_API_URL}?id=${product}`);
+            const response = await axios.get(`${PRICE_API_URL}/${product}`);
             const productData = response.data[0]; // json-server returns an array
 
             if (!productData) {
@@ -36,23 +37,29 @@ class Cart {
     }
 
     cartTotal(){
-        const subTotal=this.items.reduce((sum,item)=>sum+(item.price*item.quantity));
-        const tax=Math.round(subTotal*TAX*100)/100;
-        const total=subTotal+tax;
+        let subTotal = 0;
+
+        for (let i = 0; i < this.items.length; i++) {
+            subTotal += this.items[i].price * this.items[i].quantity;
+        }
+
+        let tax=Math.round(subTotal*TAX*100)/100;
+        let total=subTotal+tax;
         return {subTotal,tax,total};
 
     }
 
     printCart(){
-        console.log("\nCart Contents : ");
+        //console.log("\nCart Contents : ");
         this.items.forEach(item=>{
             console.log(`Cart contains ${item.quantity} x ${item.product} @ ${item.price.toFixed(2)}`);
 
         });
-        const {subTotal,tax,total}=this.cartTotal();
-        console.log(`\nSubtotal: ${subtotal.toFixed(2)}`);
+        const { subTotal,tax,total }=this.cartTotal();
+        console.log(`\nSubtotal: ${subTotal.toFixed(2)}`);
         console.log(`Tax: ${tax.toFixed(2)}`);
         console.log(`Total: ${total.toFixed(2)}\n`);
     }
 
 }
+module.exports=Cart;
