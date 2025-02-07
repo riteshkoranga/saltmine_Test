@@ -35,4 +35,24 @@ class Cart {
         }
     }
 
+    cartTotal(){
+        const subTotal=this.items.reduce((sum,item)=>sum+(item.price*item.quantity));
+        const tax=Math.round(subTotal*TAX*100)/100;
+        const total=subTotal+tax;
+        return {subTotal,tax,total};
+
+    }
+
+    printCart(){
+        console.log("\nCart Contents : ");
+        this.items.forEach(item=>{
+            console.log(`Cart contains ${item.quantity} x ${item.product} @ ${item.price.toFixed(2)}`);
+
+        });
+        const {subTotal,tax,total}=this.cartTotal();
+        console.log(`\nSubtotal: ${subtotal.toFixed(2)}`);
+        console.log(`Tax: ${tax.toFixed(2)}`);
+        console.log(`Total: ${total.toFixed(2)}\n`);
+    }
+
 }
