@@ -1,76 +1,59 @@
-## :warning: Please read these instructions carefully and entirely first
-* Clone this repository to your local machine.
-* Use your IDE of choice to complete the assignment.
-* Use Javascript or preferably Typescript to complete the assignment, other languages will not be considered unfortunately.
-* When you have completed the assignment, you need to  push your code to a public repository and send the link via email.
-* Once you reply back to the email, your assignment will be considered completed. Please make sure that you have completed the assignment and pushed all code from your local machine to the repository before you reply.
-* There is no time limit for this task - however, for guidance, it is expected to typically take around 3-4 hours.
+# 🛒 Shopping Cart System
 
-# Begin the task
+A simple **shopping cart system** that fetches product prices from `db.json` and calculates totals.
 
-Write some code that provides the following basic shopping cart capabilities:
+---
 
-1. Add a product to the cart
-   1. Specifying the product name and quantity
-   2. Retrieve the product price by issuing a request to the the [Price API](#price-api) specified below
-   3. Cart state (totals, etc.) must be available
+## 🚀 Features
+- ✅ Fetches prices dynamically from `json-server`
+- ✅ Supports adding multiple products
+- ✅ Calculates **subtotal, tax (12.5%), and total**
+- ✅ Includes unit tests (`npm test`)
 
-2. Calculate the state:
-   1. Cart subtotal (sum of price for all items)
-   2. Tax payable (charged at 12.5% on the subtotal)
-   3. Total payable (subtotal + tax)
-   4. Totals should be rounded up where required
+---
 
-## Price API
+## 📌 Setup Instructions
 
-The price API is an HTTP service that returns the price details for a product, identified by it's name. The shopping cart should integrate with the price API to retrieve product prices. 
+1️⃣ Install Dependencies
+```bash
+npm install
+```
 
-### Price API Service Details
+2️⃣ Start the Price API
+```bash
+npm run serve-products
+```
 
-Start the price API by running the following command: `npm run serve-products`
+✅ Runs json-server at http://localhost:3001/products
 
-Base URL: `http://localhost:3001/`
+## 📌 Testing Instructions
 
-View Product: `GET /products/{product}`
+🔹 Manual Testing
 
-List of available products
-* `cheerios`
-* `cornflakes`
-* `frosties`
-* `shreddies`
-* `weetabix`
+Run:
+```bash
+node test.js
+```
+Expected Output:
+```bash
+Adding items to the cart...
 
-## Example
-The below is a sample with the correct values you can use to confirm your calculations
+Cart contains 3 x cheerios @ 8.43
+Cart contains 1 x shreddies @ 4.68
+Cart contains 1 x frosties @ 4.99
 
-### Inputs
-* Add 1 × cornflakes @ 2.52 each
-* Add another 1 x cornflakes @2.52 each
-* Add 1 × weetabix @ 9.98 each
-  
-### Results  
-* Cart contains 2 x cornflakes
-* Cart contains 1 x weetabix
-* Subtotal = 15.02
-* Tax = 1.88
-* Total = 16.90
+Subtotal: 34.96
+Tax: 4.37
+Total: 39.33
+```
 
-## Tips on what we’re looking for
+If you want to add more produdcts and test them, you can do it by modifying test.js sample test.
 
-* We value simplicity as an architectural virtue and as a development practice. Solutions should reflect the difficulty of the assigned task, and shouldn’t be overly complex.
-* We prefer simple, well tested solutions over clever solutions.
-* We will appreciate descriptive and unambiguous names for the concepts you introduce.
-* Atomic commits with descriptive messages will get you extra brownie points.
+🔹 Automated Testing
+Run test:
+```bash
+npm test
+```
 
-### DO
 
-* ✅ Include unit tests.
-* ✅ Test both any client and logic.
-* ✅ Update the README.md with any relevant information, assumptions, and/or tradeoffs you would like to highlight.
-* ✅ Add some information on how the reviewer might test your solution.
 
-### DO NOT
-
-* ❌ Submit any form of app, such as web APIs, browser, desktop, or command-line applications.
-* ❌ Add unnecessary layers of abstraction.
-* ❌ Add unnecessary patterns/ architectural features that aren’t called for e.g. persistent storage.
