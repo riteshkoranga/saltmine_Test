@@ -56,5 +56,24 @@ Run:
 npm test
 ```
 
+## 📌 Trade-offs & Assumptions
+
+### 1️⃣ **Custom Routes for Product Lookup**
+**Problem:**  
+By default, `json-server` does **not support** fetching products using `/products/{product}`. Instead, it requires query filtering like `/products?id=product_name`.
+
+**Solution:**  
+We added a **custom `routes.json` file** to enable fetching products by their name directly:
+```json
+{
+  "/products/:id": "/products?id=:id"
+}
+```
+
+Trade-off:
+
+This approach works only for simple mappings.
+It does not allow deep filtering like category=soup&brand=knorr.
+
 
 
